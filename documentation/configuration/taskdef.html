@@ -3529,37 +3529,37 @@
 <tr>
 <td style="text-align: left;">description</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: left;">Description of the task</td>
+<td style="text-align: left;">Description of the task.</td>
 <td style="text-align: left;">Optional</td>
 </tr>
 <tr>
 <td style="text-align: left;">retryCount</td>
 <td style="text-align: left;">number</td>
-<td style="text-align: left;">Number of retries to attempt when a Task is marked as failure</td>
+<td style="text-align: left;">Number of retries to attempt when a Task is marked as failure.</td>
 <td style="text-align: left;">Defaults to 3 with maximum allowed capped at 10</td>
 </tr>
 <tr>
 <td style="text-align: left;">retryLogic</td>
 <td style="text-align: left;">string (enum)</td>
-<td style="text-align: left;">Mechanism for the retries</td>
+<td style="text-align: left;">Mechanism for the retries.</td>
 <td style="text-align: left;">See <a href="#retry-logic">Retry Logic</a></td>
 </tr>
 <tr>
 <td style="text-align: left;">retryDelaySeconds</td>
 <td style="text-align: left;">number</td>
-<td style="text-align: left;">Time to wait before retries</td>
+<td style="text-align: left;">Time to wait before retries.</td>
 <td style="text-align: left;">Defaults to 60 seconds</td>
 </tr>
 <tr>
 <td style="text-align: left;">timeoutPolicy</td>
 <td style="text-align: left;">string (enum)</td>
-<td style="text-align: left;">Task's timeout policy</td>
+<td style="text-align: left;">Task's timeout policy.</td>
 <td style="text-align: left;">Defaults to <code>TIME_OUT_WF</code>; See <a href="#timeout-policy">Timeout Policy</a></td>
 </tr>
 <tr>
 <td style="text-align: left;">timeoutSeconds</td>
 <td style="text-align: left;">number</td>
-<td style="text-align: left;">Time in seconds, after which the task is marked as <code>TIMED_OUT</code> if not completed after transitioning to <code>IN_PROGRESS</code> status for the first time</td>
+<td style="text-align: left;">Time in seconds, after which the task is marked as <code>TIMED_OUT</code> if it has not reached a terminal state after transitioning to <code>IN_PROGRESS</code> status for the first time.</td>
 <td style="text-align: left;">No timeouts if set to 0</td>
 </tr>
 <tr>
@@ -3571,7 +3571,7 @@
 <tr>
 <td style="text-align: left;">pollTimeoutSeconds</td>
 <td style="text-align: left;">number</td>
-<td style="text-align: left;">Time in seconds, after which the task is marked as <code>TIMED_OUT</code> if not polled by a worker</td>
+<td style="text-align: left;">Time in seconds, after which the task is marked as <code>TIMED_OUT</code> if not polled by a worker.</td>
 <td style="text-align: left;">No timeouts if set to 0</td>
 </tr>
 <tr>
@@ -3595,7 +3595,7 @@
 <tr>
 <td style="text-align: left;">concurrentExecLimit</td>
 <td style="text-align: left;">number</td>
-<td style="text-align: left;">Number of tasks that can be executed at any given time</td>
+<td style="text-align: left;">Number of tasks that can be executed at any given time.</td>
 <td style="text-align: left;">Optional</td>
 </tr>
 <tr>
@@ -3613,7 +3613,7 @@
 <tr>
 <td style="text-align: left;">ownerEmail</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: left;">Email address of the team that owns the task</td>
+<td style="text-align: left;">Email address of the team that owns the task.</td>
 <td style="text-align: left;">Required</td>
 </tr>
 </tbody>
@@ -3646,11 +3646,11 @@ You have 1000 task executions waiting in the queue, and 1000 workers polling thi
 </ul>
 <p><strong>Example</strong><br />
 Let's set <code>rateLimitFrequencyInSeconds = 5</code>, and <code>rateLimitPerFrequency = 12</code>. This means our frequency window is of 5 seconds duration, and for each frequency window, Conductor would only give 12 tasks to workers. So, in a given minute, Conductor would only give 12*(60/5) = 144 tasks to workers irrespective of the number of workers that are polling for the task.  </p>
-<p>Note that unlike <code>concurrentExecLimit</code>, rate limiting doesn't take into account tasks already in progress/completed. Even if all the previous tasks are executed within 1 sec, or would take a few days, the new tasks are still given to workers at configured frequency, 144 tasks per minute in above example.   </p>
+<p>Note that unlike <code>concurrentExecLimit</code>, rate limiting doesn't take into account tasks already in progress or a terminal state. Even if all the previous tasks are executed within 1 sec, or would take a few days, the new tasks are still given to workers at configured frequency, 144 tasks per minute in above example.   </p>
 <h3 id="using-inputkeys-and-outputkeys">Using <code>inputKeys</code> and <code>outputKeys</code></h3>
 <ul>
 <li><code>inputKeys</code> and <code>outputKeys</code> can be considered as parameters and return values for the Task.</li>
-<li>Consider the task Definition as being represented by an interface: <code>(value1, value2 .. valueN) someTaskDefinition(key1, key2 .. keyN);</code></li>
+<li>Consider the task Definition as being represented by an interface: <code>(value1, value2 .. valueN) someTaskDefinition(key1, key2 .. keyN);</code>.</li>
 <li>However, these parameters are not strictly enforced at the moment. Both <code>inputKeys</code> and <code>outputKeys</code> act as a documentation for task re-use. The tasks in workflow need not define all of the keys in the task definition.</li>
 <li>In the future, this can be extended to be a strict template that all task implementations must adhere to, just like interfaces in programming languages.</li>
 </ul>
