@@ -25,6 +25,7 @@ import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
+import com.netflix.conductor.common.run.WorkflowTestRequest;
 import org.apache.commons.lang3.Validate;
 import org.apache.commons.lang3.concurrent.BasicThreadFactory;
 
@@ -200,6 +201,10 @@ public class OrkesWorkflowClient implements AutoCloseable {
 
     public void skipTaskFromWorkflow(String workflowId, String taskReferenceName) {
         workflowClient.skipTaskFromWorkflow(workflowId, taskReferenceName);
+    }
+
+    public Workflow testWorkflow(WorkflowTestRequest testRequest) {
+        return workflowClient.testWorkflow(testRequest);
     }
 
     public SearchResult<WorkflowSummary> search(String query) {
